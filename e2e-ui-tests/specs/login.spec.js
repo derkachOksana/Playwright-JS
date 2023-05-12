@@ -5,6 +5,7 @@ const { userData } = require('../../test-data/data');
 const config = require("../../playwright.config");
 
 let loginPage;
+const user = users[config.default.use.env].user;
 const env = config.default.use.env;
 
 
@@ -16,8 +17,7 @@ test.describe('Login tests', () => {
     });
 
     test('Login with valid data', async ({ page }) => {
-        await loginPage.login('Tsthanna@tst.com', 'Tster_123');
-        //await expect(page.locator("[class='logo']")).toBeVisible;
+        await loginPage.login(user.email, user.password);
         await expect(page).toHaveURL('http://omega-stage.qa.nolimit.school/vertical/default-dashboard');
     });
 
